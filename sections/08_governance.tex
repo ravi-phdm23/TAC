@@ -1,0 +1,58 @@
+\section{Governance and Release Approval Rules}
+
+This section defines how testing outcomes produced by the Testing Automation Suite (TAS) are governed and used to support release and quality-related decisions. It clarifies authority boundaries, decision responsibilities, and the treatment of observed discrepancies without prescribing organisational policy.
+
+\subsection{Principles of Governance}
+
+Governance within TAS is based on the following principles:
+
+\begin{itemize}
+  \item \textbf{Evidence Precedes Decision}: All release-related judgments are grounded in observable and reproducible test evidence.
+  \item \textbf{Separation of Fact and Judgment}: Detection and localisation of differences are factual activities; assessment of acceptability is a judgment.
+  \item \textbf{Explicit Accountability}: Decisions regarding acceptance of observed behaviour are attributable to defined roles, not to tools or automation.
+  \item \textbf{Traceability of Rationale}: Decisions are expected to be supported by documented explanation and context.
+\end{itemize}
+
+These principles ensure that testing outcomes remain explainable and defensible over time.
+
+\subsection{Treatment of Detected Differences}
+
+Differences identified through TAS execution and comparison are treated as factual observations. They are neither assumed to be defects nor dismissed as expected change without review.
+
+When discrepancies are identified, they become items requiring explanation. Explanation may include alignment with documented change intent, identification of known limitations, or confirmation of unintended behaviour requiring remediation.
+
+\subsection{Authority of Test Evidence}
+
+Execution results and discrepancy evidence produced through deterministic comparison constitute the authoritative record of observed system behaviour. Such evidence is not altered, suppressed, or overridden as part of governance or approval activities.
+
+Alternative analyses or interpretations may be used to contextualise evidence but do not invalidate the existence of observed differences.
+
+\subsection{Decision-Making and Outcome Classification}
+
+Outcome classification is performed by designated human reviewers with appropriate domain and testing context. Based on review of evidence and documented intent, outcomes may include:
+
+\begin{itemize}
+  \item Acceptance of observed behaviour as intended or acceptable.
+  \item Identification of defects or issues requiring remediation.
+  \item Deferral of acceptance pending further analysis or clarification.
+\end{itemize}
+
+Outcome classification does not modify test evidence; it determines how evidence is acted upon.
+
+\subsection{Conditions for Acceptance with Differences}
+
+Acceptance of a system state in the presence of detected differences requires an explicit and documented explanation. Acceptable explanations include, but are not limited to:
+
+\begin{itemize}
+  \item Alignment with approved change intent or requirements.
+  \item Expected behavioural changes resulting from implemented modifications.
+  \item Known and documented limitations with an agreed remediation plan.
+\end{itemize}
+
+Assertions without supporting rationale or traceability do not constitute sufficient explanation.
+
+\subsection{Escalation and Re-Execution}
+
+Where discrepancies cannot be adequately explained or classified, they may be escalated for further investigation. Changes to intent, test definitions, or system behaviour may result in re-execution of tests, producing new evidence for review.
+
+Each execution cycle remains independent and reproducible, preserving a clear audit trail of observed behaviour and decision rationale.

@@ -1,0 +1,60 @@
+\section{Roles and Responsibilities}
+
+This section outlines the primary roles involved in the use and operation of the Testing Automation Suite (TAS), along with their responsibilities and decision boundaries. Roles are defined in terms of accountability for testing activities and artefacts rather than organisational hierarchy.
+
+\subsection{Business Tester}
+
+Business Testers are responsible for defining and validating testing intent based on documented change descriptions, requirements, or expected system behaviour.
+
+Key responsibilities include:
+\begin{itemize}
+  \item Reviewing and refining structured test intent derived from documented sources.
+  \item Approving or revising executable test cases prior to execution.
+  \item Interpreting test execution evidence in the context of business or domain expectations.
+  \item Classifying testing outcomes, including acceptance of observed behaviour or identification of defects.
+\end{itemize}
+
+Business Testers do not alter execution results or evidence produced by TAS. Their authority applies to interpretation and outcome classification, not to modification of observed data.
+
+\subsection{Test Engineer}
+
+Test Engineers are responsible for configuring, maintaining, and executing TAS capabilities to ensure reliable and reproducible testing.
+
+Key responsibilities include:
+\begin{itemize}
+  \item Configuring detection, localisation, and execution capabilities.
+  \item Validating test definitions, data mappings, and execution logic.
+  \item Ensuring deterministic execution and integrity of test evidence.
+  \item Supporting investigation of discrepancies through reproducible analysis.
+\end{itemize}
+
+Test Engineers are accountable for the technical correctness and repeatability of testing execution, but do not determine business acceptability of results.
+
+\subsection{System or Application Owner}
+
+System or Application Owners are responsible for providing context regarding system changes and expected behaviour.
+
+Key responsibilities include:
+\begin{itemize}
+  \item Supplying accurate and timely information regarding system changes.
+  \item Clarifying intended behaviour when discrepancies are identified.
+  \item Supporting resolution of defects or issues identified through testing.
+\end{itemize}
+
+System Owners contribute to explanation and remediation but do not override test evidence.
+
+\subsection{Testing Center of Excellence}
+
+The Testing Center of Excellence (TCoE) is responsible for defining, maintaining, and evolving the TAS operating model.
+
+Key responsibilities include:
+\begin{itemize}
+  \item Establishing standards and guidance for TAS usage.
+  \item Supporting onboarding and adoption across teams.
+  \item Reviewing feedback, limitations, and improvement opportunities.
+  \item Ensuring consistency of testing practices across systems and domains.
+\end{itemize}
+
+The TCoE does not participate in day-to-day outcome classification but provides oversight and stewardship of the testing capability.
+
+\subsection{Governance and Assurance Functions}

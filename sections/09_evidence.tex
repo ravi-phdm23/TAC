@@ -1,0 +1,54 @@
+\section{Evidence, Auditability, and Traceability}
+
+This section describes how the Testing Automation Suite (TAS) produces, preserves, and organises test evidence to support explainable testing outcomes, retrospective review, and auditability.
+
+\subsection{Definition of Test Evidence}
+
+Within TAS, test evidence refers to the artefacts produced through deterministic execution and comparison of system outputs. Test evidence captures observable system behaviour at a specific point in time and serves as the factual basis for testing outcomes and decisions.
+
+Test evidence is distinct from test intent, test definitions, or analytical interpretation. While these may inform execution or decision-making, they do not themselves constitute evidence.
+
+\subsection{Evidence Artefacts}
+
+Typical evidence artefacts produced by TAS include:
+
+\begin{itemize}
+  \item Execution results generated from deterministic test runs.
+  \item Structured discrepancy outputs identifying observed differences.
+  \item Metadata describing execution context, including reference states and comparison parameters.
+\end{itemize}
+
+Evidence artefacts are generated automatically as part of test execution and are not manually altered.
+
+\subsection{Immutability and Reproducibility}
+
+Test evidence produced by TAS is immutable. Once generated, evidence artefacts are not modified, overwritten, or selectively suppressed.
+
+Reproducibility is achieved by preserving sufficient contextual information to allow re-execution of tests under equivalent conditions. This includes retention of test definitions, data mappings, and comparison logic associated with the execution.
+
+Immutability and reproducibility together ensure that testing outcomes can be independently verified or revisited at a later time.
+
+\subsection{Traceability Across the Testing Lifecycle}
+
+TAS supports traceability across the testing lifecycle by linking:
+
+\begin{itemize}
+  \item Documented change intent or requirements.
+  \item Constructed test definitions and execution logic.
+  \item Deterministic execution results and discrepancy evidence.
+  \item Outcome classification and decision rationale.
+\end{itemize}
+
+Traceability does not imply that earlier artefacts determine correctness; rather, it provides context for understanding how testing outcomes were derived.
+
+\subsection{Support for Review and Audit}
+
+The organisation of evidence within TAS enables retrospective review of both observed behaviour and decision rationale. Reviewers can examine what was tested, how it was tested, what was observed, and how outcomes were classified.
+
+TAS does not require special audit-specific processes. The same evidence produced for testing purposes is sufficient to support internal review, assurance activities, or external scrutiny where applicable.
+
+\subsection{Limitations of Evidence}
+
+While TAS provides strong guarantees regarding the integrity and reproducibility of test evidence, it does not guarantee completeness of coverage or correctness of intent. Evidence reflects only what was tested and executed.
+
+Understanding these limitations is essential to avoid over-interpreting test results or assuming assurance beyond the scope of executed tests.

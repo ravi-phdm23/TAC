@@ -1,0 +1,59 @@
+\section{Limitations and Known Constraints}
+
+This section documents the known limitations and constraints of the Testing Automation Suite (TAS). These limitations are not defects in the solution, but inherent boundaries of what automated and semi-automated testing can reliably achieve.
+
+Understanding these constraints is essential to avoid over-reliance on TAS outcomes or misinterpretation of testing evidence.
+
+\subsection{Dependence on Defined Scope and Inputs}
+
+TAS operates on the basis of explicitly defined testing intent, test definitions, and comparison criteria. It does not infer what should be tested in the absence of documented inputs.
+
+If testing intent is incomplete, ambiguous, or outdated, TAS may faithfully execute tests that do not fully reflect desired coverage. In such cases, limitations arise from the quality of inputs rather than execution capability.
+
+\subsection{Coverage Is Bounded by Test Definitions}
+
+TAS provides strong guarantees regarding the correctness and reproducibility of executed tests, but it does not guarantee completeness of testing coverage.
+
+Outputs and evidence reflect only what has been explicitly tested. Unspecified behaviours, unmodelled data paths, or omitted scenarios remain outside the scope of observed evidence.
+
+\subsection{Detection Sensitivity Is Configuration-Dependent}
+
+Detection and localisation capabilities depend on the selection of metrics, aggregates, keys, and tolerances. Poorly chosen detection criteria may fail to surface certain classes of regression or may generate excessive noise.
+
+While TAS supports systematic configuration, it does not automatically determine optimal sensitivity for all scenarios.
+
+\subsection{Limitations of Assistive Automation}
+
+AI-assisted capabilities within TAS are intentionally constrained to hypothesis generation and summarisation. As a result:
+
+\begin{itemize}
+  \item AI-generated interpretations may be incomplete or incorrect.
+  \item AI does not resolve ambiguity without human input.
+  \item AI does not validate correctness of generated artefacts.
+\end{itemize}
+
+These limitations are mitigated through human review and deterministic execution, but they cannot be eliminated.
+
+\subsection{Interpretation Remains a Human Responsibility}
+
+TAS does not determine business correctness, regulatory compliance, or acceptability of observed behaviour. Such determinations require contextual judgment that cannot be automated reliably.
+
+While TAS provides evidence to support interpretation, it does not replace domain expertise or decision-making responsibility.
+
+\subsection{System and Data Preconditions}
+
+TAS assumes that system outputs are accessible, comparable, and sufficiently stable to support regression testing. In environments with highly non-deterministic behaviour, rapidly changing schemas, or incomplete observability, TAS effectiveness may be reduced.
+
+Such conditions require additional controls or adaptations outside the scope of TAS.
+
+\subsection{Risk of Misuse}
+
+Misuse of TAS can occur if:
+
+\begin{itemize}
+  \item Test results are treated as proof of correctness rather than evidence of observed behaviour.
+  \item Absence of detected differences is interpreted as absence of risk.
+  \item Intermediate artefacts are treated as authoritative without execution.
+\end{itemize}
+
+These risks are mitigated through adherence to the conceptual model, governance practices, and role separation defined in this document.

@@ -1,0 +1,61 @@
+\section{Conceptual Model of Testing in TAS}
+
+This section defines the conceptual model that underpins the Testing Automation Suite (TAS). The model describes how testing knowledge is constructed, validated, and used to support reliable regression testing across evolving systems.
+
+\subsection{Testing as Comparison Across System States}
+
+TAS is based on the assumption that systems evolve incrementally over time through changes to code, configuration, data, or infrastructure. Testing, in this context, is concerned with comparing outputs produced by a system in different states in order to identify and explain differences.
+
+Rather than treating regression testing as a single activity, TAS models it as a sequence of related tasks that together establish whether observed differences are expected, acceptable, and correctly implemented. The objective is not only to detect change, but to make change explainable.
+
+\subsection{Separation of Detection, Localisation, and Expectation}
+
+The TAS model separates regression testing into three distinct concerns:
+
+\begin{itemize}
+  \item \textbf{Detection}: identifying whether differences exist between system states at an aggregate or summary level.
+  \item \textbf{Localisation}: determining precisely where and how those differences manifest within the data.
+  \item \textbf{Expectation}: defining what behaviour is intended or acceptable based on documented change intent or requirements.
+\end{itemize}
+
+These concerns address different failure modes of traditional testing and require different forms of automation and oversight. Conflating them leads to either missed regressions, excessive manual effort, or untestable assumptions.
+
+\subsection{Testing as a Chain of Constrained Constructions}
+
+TAS treats the construction of tests and test results as a staged process rather than a single automated step. Each stage transforms its inputs into more concrete artefacts through constrained operations, with increasing epistemic authority.
+
+Intermediate artefacts produced during testing—such as structured test intent, executable test cases, or data access logic—are treated as \emph{reviewable hypotheses}. They represent proposed interpretations or implementations of testing intent and are subject to validation, revision, or rejection.
+
+No intermediate artefact is considered authoritative solely by virtue of being generated.
+
+\subsection{Authority Gradient in Testing Artefacts}
+
+Within TAS, different artefacts carry different levels of authority:
+
+\begin{itemize}
+  \item Artefacts derived from natural language inputs or change descriptions are inherently interpretative and carry the lowest authority.
+  \item Executable test definitions and data access logic carry medium authority once validated, but remain representations of intended checks rather than evidence.
+  \item Executed test results produced through deterministic comparison of system outputs carry the highest authority and constitute factual evidence of system behaviour.
+\end{itemize}
+
+This authority gradient is fundamental to how TAS incorporates automation, including AI-assisted capabilities, without delegating correctness decisions to probabilistic processes.
+
+\subsection{Role of Automation and Human Oversight}
+
+Automation within TAS is applied selectively based on the nature of the task being performed. Assistive automation may be used to propose interpretations, mappings, or candidate artefacts, but does not assert correctness.
+
+Human oversight is applied at points where interpretation, intent, or acceptance of change is required. Deterministic execution and comparison, once configured and validated, proceed without manual intervention and produce immutable results.
+
+This separation ensures that accountability for meaning and intent remains human, while evidence of system behaviour remains machine-derived.
+
+\subsection{Implications for Regression Testing Practice}
+
+By adopting this model, TAS establishes a testing approach that is:
+
+\begin{itemize}
+  \item Incremental, aligning with how systems evolve in practice.
+  \item Scalable, by separating coarse-grained detection from fine-grained analysis.
+  \item Explainable, by making the construction and validation of testing knowledge explicit.
+\end{itemize}
+
+Subsequent sections describe how this conceptual model is realised through the TAS architecture and modules.

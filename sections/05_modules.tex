@@ -1,0 +1,192 @@
+\section{TAS Modules}
+
+This section describes the core modules of the Testing Automation Suite (TAS) and their roles within the overall testing model. Each module is defined in terms of the testing task it performs, the nature of its inputs and outputs, and the limits of its authority.
+
+\subsection{DataGuard --- High-Level Regression Detection}
+
+\subsubsection{Purpose}
+
+DataGuard provides an early and scalable mechanism for detecting unexpected differences between successive system states. It operates at an aggregate or metric level and is intended to answer a single question: whether observable outputs have changed in ways that warrant further investigation.
+
+\subsubsection{Testing Task}
+
+The primary task of DataGuard is regression detection. It compares selected summaries, aggregates, or key indicators produced by a system across successive executions or states and identifies deviations beyond defined expectations or tolerances.
+
+DataGuard is designed to be applied routinely and at scale, enabling testing teams to detect potential regressions without incurring the cost of full granular comparison for every change.
+
+\subsubsection{Inputs and Outputs}
+
+Typical inputs to DataGuard include:
+\begin{itemize}
+  \item Aggregated metrics or summaries derived from system outputs.
+  \item Reference values or baselines representing a prior system state.
+  \item Comparison rules or tolerances defining acceptable variation.
+\end{itemize}
+
+DataGuard produces:
+\begin{itemize}
+  \item Signals indicating the presence or absence of detected differences.
+  \item Structured information identifying which metrics or aggregates exhibit deviation.
+\end{itemize}
+
+These outputs may serve as triggers or entry points for more detailed analysis but are not themselves explanations.
+
+\subsubsection{Authority and Limitations}
+
+DataGuard has authority only over the detection of differences at the level it observes. It does not:
+
+\begin{itemize}
+  \item Identify the root cause of a detected difference.
+  \item Determine whether a detected difference is correct or acceptable.
+  \item Provide record-level or attribute-level explanations.
+\end{itemize}
+
+A positive signal from DataGuard indicates that further investigation may be required, not that a defect has been confirmed. Conversely, the absence of detected differences at this level does not guarantee that no granular discrepancies exist.
+
+\subsubsection{Role within TAS}
+
+Within the TAS architecture, DataGuard occupies the detection layer. Its role is to provide an efficient and repeatable first pass over system outputs, allowing testing effort to be focused where change is observed.
+
+DataGuard outputs are commonly consumed by localisation capabilities, such as granular comparison, or reviewed in conjunction with expectation-driven testing to determine whether observed differences align with intended change.
+
+
+\subsection{TrueMatch --- Granular Data Comparison}
+
+\subsubsection{Purpose}
+
+TrueMatch provides deterministic localisation of differences identified during regression testing. It operates at a granular data level and is intended to explain \emph{where} and \emph{how} system outputs differ across successive system states, without interpreting whether those differences are correct or intended.
+
+\subsubsection{Testing Task}
+
+The primary task of TrueMatch is discrepancy localisation. Given two comparable system states, TrueMatch performs structured, repeatable comparison of data at record, attribute, or calculation-component level to identify the precise points at which differences occur.
+
+TrueMatch is invoked when coarse-grained detection is insufficient to explain observed changes, or when detailed evidence is required to support investigation, analysis, or decision-making.
+
+\subsubsection{Inputs and Outputs}
+
+Typical inputs to TrueMatch include:
+\begin{itemize}
+  \item Comparable datasets or outputs produced by different system states.
+  \item Comparison rules defining keys, join conditions, and alignment criteria.
+  \item Tolerance definitions for numerical or threshold-based comparison.
+\end{itemize}
+
+TrueMatch produces:
+\begin{itemize}
+  \item Structured listings of discrepancies at record or attribute level.
+  \item Categorisation of differences based on type (e.g.\ value change, missing record, additional record).
+  \item Supporting evidence sufficient to reproduce the comparison deterministically.
+\end{itemize}
+
+The outputs of TrueMatch constitute factual evidence of difference, not conclusions regarding correctness.
+
+\subsubsection{Authority and Limitations}
+
+TrueMatch has authority over the identification and localisation of differences present in the data it compares. It does not:
+
+\begin{itemize}
+  \item Interpret business intent or requirement meaning.
+  \item Judge whether a difference is acceptable or expected.
+  \item Infer root causes beyond the observable structure of the data.
+\end{itemize}
+
+TrueMatch operates purely on observable system outputs. Any interpretation of \emph{why} a difference exists or whether it represents a defect lies outside its scope.
+
+\subsubsection{Relationship to Detection and Expectation}
+
+Within the TAS architecture, TrueMatch occupies the localisation layer. It commonly consumes signals from detection capabilities, such as DataGuard, but may also be applied independently when granular evidence is required.
+
+TrueMatch outputs may be reviewed in conjunction with expectation-driven testing artefacts to assess alignment with intended system behaviour. However, such assessment does not alter the factual nature of the discrepancies identified by TrueMatch.
+
+\subsubsection{Role within TAS}
+
+TrueMatch enables testing teams to replace manual, ad-hoc investigation with a repeatable and auditable localisation process. By providing precise and reproducible evidence of how system outputs differ, TrueMatch supports efficient investigation, informed decision-making, and traceable testing outcomes without conflating evidence with interpretation.
+
+
+
+\subsection{Test Studio --- Expectation Construction and Test Realisation}
+
+\subsubsection{Purpose}
+
+Test Studio provides a controlled mechanism for constructing testing expectations and executable tests from documented change intent or requirements. Its role is to answer the question of \emph{what should be tested}, without asserting whether a system has behaved correctly.
+
+Test Studio operates upstream of execution and comparison. It produces hypotheses about intended system behaviour that can be evaluated through deterministic testing, rather than conclusions about correctness.
+
+\subsubsection{Testing Task}
+
+The primary task of Test Studio is expectation construction. This involves progressively transforming informal or semi-formal descriptions of change into structured, executable test artefacts that can be evaluated against observed system outputs.
+
+Test Studio does not perform regression detection or discrepancy localisation. Instead, it supplies test definitions and execution logic that may be consumed by other TAS modules to evaluate alignment between intended and observed behaviour.
+
+\subsubsection{Testing as a Chain of Constrained Constructions}
+
+Test Studio is intentionally designed as a sequence of constrained transformations rather than a single automated step. Each stage produces intermediate artefacts that are treated as reviewable hypotheses, not authoritative truth. Authority increases only through validation and deterministic execution.
+
+The stages are described below.
+
+\paragraph{Constructor C1 --- Requirement Formalisation (AI-assisted)}
+
+\begin{itemize}
+  \item \textbf{Input}: Documented change descriptions or requirements expressed in natural language.
+  \item \textbf{Output}: Structured representations of test intent, including conditions, entities, and invariants.
+  \item \textbf{Role of Automation}: Assistive interpretation of language into structured form.
+  \item \textbf{Authority}: Low. Outputs are inherently interpretative and subject to review, revision, or rejection.
+\end{itemize}
+
+This stage does not establish correctness. It proposes candidate interpretations of intent.
+
+\paragraph{Constructor C2 --- Test Case Generation}
+
+\begin{itemize}
+  \item \textbf{Input}: Structured test intent produced by requirement formalisation.
+  \item \textbf{Output}: Executable test case definitions expressing the checks to be performed.
+  \item \textbf{Role of Automation}: Optional and bounded assistance in structuring test cases.
+  \item \textbf{Authority}: Medium. Ambiguities must be resolved or explicitly rejected before progression.
+\end{itemize}
+
+At this stage, test cases become explicit hypotheses about system behaviour.
+
+\paragraph{Constructor C3 --- Knowledge Mapping and Data Access Construction}
+
+\begin{itemize}
+  \item \textbf{Input}: Executable test case definitions.
+  \item \textbf{Output}: Data mappings and data access logic required to evaluate the test cases.
+  \item \textbf{Role of Automation}: Suggestive only; proposals require validation.
+  \item \textbf{Authority}: Medium, contingent on validation.
+\end{itemize}
+
+Automation may propose data access logic, but may not assert its correctness.
+
+\paragraph{Constructor C4 --- Test Execution}
+
+\begin{itemize}
+  \item \textbf{Input}: Validated test cases and validated data access logic.
+  \item \textbf{Output}: Deterministic test results derived from system outputs.
+  \item \textbf{Role of Automation}: None beyond execution.
+  \item \textbf{Authority}: High. Outputs constitute factual evidence of observed system behaviour.
+\end{itemize}
+
+This stage establishes evidence. Outputs from execution may be consumed by detection or localisation modules.
+
+\paragraph{Constructor C5 --- Result Synthesis and Reporting}
+
+\begin{itemize}
+  \item \textbf{Input}: Test definitions and execution results.
+  \item \textbf{Output}: Structured summaries, evidence artefacts, and reporting views.
+  \item \textbf{Role of Automation}: Summarisation only.
+  \item \textbf{Authority}: Reporting. This stage does not alter evidence or outcomes.
+\end{itemize}
+
+\subsubsection{Human Oversight and Review}
+
+Human review is required at all stages involving interpretation, intent, or acceptance of hypotheses. Intermediate artefacts may be approved, revised, or rejected, but are not treated as authoritative outcomes.
+
+Once execution has occurred, results are immutable. Human judgment applies only to interpretation of evidence and subsequent decision-making, not to alteration of observed outcomes.
+
+\subsubsection{Role within TAS}
+
+Within the TAS architecture, Test Studio supplies expectation-driven testing capability. It enables testing teams to move from informal change descriptions to repeatable, auditable tests while preserving clear separation between interpretation, execution, and evidence.
+
+By constraining automation and explicitly managing authority, Test Studio allows advanced test construction techniques to be used without compromising determinism, accountability, or explainability.
+
+

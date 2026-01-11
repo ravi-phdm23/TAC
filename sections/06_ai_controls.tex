@@ -1,0 +1,67 @@
+\section{AI Usage and Human-in-the-Loop Controls}
+
+This section defines how assistive automation, including AI-based capabilities, is used within the Testing Automation Suite (TAS), and how human oversight is applied to preserve determinism, accountability, and explainability.
+
+\subsection{Principles Governing AI Usage}
+
+AI usage within TAS is governed by the following principles:
+
+\begin{itemize}
+  \item \textbf{Assistive, Not Authoritative}: AI may propose artefacts or interpretations but does not assert correctness.
+  \item \textbf{Explicit Authority Boundaries}: No AI-generated output is treated as evidence or outcome.
+  \item \textbf{Human Accountability}: Decisions involving intent, acceptance, or interpretation remain the responsibility of human testers.
+  \item \textbf{Deterministic Outcomes}: All test evidence is produced through deterministic execution and comparison.
+\end{itemize}
+
+These principles ensure that AI augments testing capability without becoming a source of untraceable or probabilistic decision-making.
+
+\subsection{Permitted Uses of AI}
+
+Within TAS, AI may be applied to the following activities:
+
+\begin{itemize}
+  \item Interpreting natural-language change descriptions or requirements into structured representations of test intent.
+  \item Assisting in the generation or refinement of executable test case definitions.
+  \item Proposing candidate data mappings or data access logic required to evaluate test cases.
+  \item Producing summaries or narrative descriptions of test execution results for reporting purposes.
+\end{itemize}
+
+In all cases, AI-generated artefacts are treated as hypotheses and are subject to review, validation, or rejection.
+
+\subsection{Prohibited Uses of AI}
+
+AI is explicitly not used for the following purposes within TAS:
+
+\begin{itemize}
+  \item Determining whether a test has passed or failed.
+  \item Modifying or overriding execution results.
+  \item Inferring business intent, regulatory correctness, or acceptability of observed differences.
+  \item Making release or approval decisions.
+\end{itemize}
+
+Any design or implementation that enables such behaviour is considered outside the scope of TAS.
+
+\subsection{Human-in-the-Loop Control Points}
+
+Human review and oversight are applied at defined points where interpretation or intent is involved. These include:
+
+\begin{itemize}
+  \item Review of structured test intent derived from change descriptions or requirements.
+  \item Approval or revision of generated test cases prior to execution.
+  \item Validation of proposed data mappings and access logic.
+  \item Interpretation of test execution results and classification of outcomes.
+\end{itemize}
+
+Human reviewers may revise or reject intermediate artefacts but do not alter executed results.
+
+\subsection{Immutability of Execution Evidence}
+
+Once test execution has occurred, the resulting evidence is immutable. TAS does not permit modification, suppression, or reinterpretation of execution results through automation or manual intervention.
+
+Subsequent analysis or decision-making may reference execution evidence but does not alter it.
+
+\subsection{Risk Containment and Failure Modes}
+
+By isolating AI usage to assistive stages and enforcing deterministic execution, TAS limits the impact of potential AI failure modes. Errors in interpretation or artefact generation may result in incorrect hypotheses, but cannot directly produce false evidence or mask observed behaviour.
+
+This containment strategy ensures that failures are detectable, attributable, and correctable without undermining trust in testing outcomes.

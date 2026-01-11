@@ -1,0 +1,60 @@
+\section{Testing Lifecycle and Operating Workflow}
+
+This section describes the typical lifecycle and operating workflow through which the Testing Automation Suite (TAS) is applied in practice. The workflow illustrates how the TAS modules and controls interact to support repeatable and explainable regression testing across evolving systems.
+
+\subsection{Overview of the Testing Lifecycle}
+
+The TAS testing lifecycle spans from the identification of testing intent through to the interpretation of test results. It is structured to ensure that expectations, execution, and evidence are clearly separated, and that testing outcomes can be traced back to documented inputs.
+
+At a high level, the lifecycle consists of the following phases:
+\begin{itemize}
+  \item Definition of testing intent
+  \item Construction of executable tests
+  \item Deterministic execution and comparison
+  \item Detection and localisation of differences
+  \item Interpretation and outcome classification
+\end{itemize}
+
+Not all phases are required for every testing scenario; however, the ordering and authority relationships between them are preserved whenever they are applied.
+
+\subsection{Definition of Testing Intent}
+
+The lifecycle begins with the definition of testing intent. This may be derived from documented change descriptions, requirements, or other agreed sources of expected system behaviour.
+
+Where Test Studio is used, this phase includes the formalisation of intent into structured representations that can be reviewed and refined. Outputs from this phase express hypotheses about expected behaviour and do not constitute test outcomes.
+
+\subsection{Construction of Executable Tests}
+
+Structured testing intent is transformed into executable test definitions through controlled construction steps. This includes the definition of test cases, alignment of data elements, and preparation of access logic required for execution.
+
+Intermediate artefacts produced during this phase are subject to review and validation. They are treated as representations of intended checks rather than authoritative evidence.
+
+\subsection{Deterministic Execution and Comparison}
+
+Once test definitions and execution logic have been validated, tests are executed deterministically against system outputs. This phase produces factual evidence of observed system behaviour.
+
+Execution results are immutable and form the authoritative basis for all subsequent analysis. No interpretation or acceptance decisions are applied during this phase.
+
+\subsection{Detection of Differences}
+
+Following execution, detection capabilities may be applied to identify whether observable differences exist across system states at an aggregate or summary level. This phase supports scalable identification of potential regressions and helps prioritise deeper analysis.
+
+Detection outputs indicate the presence or absence of differences but do not explain their nature or cause.
+
+\subsection{Localisation and Analysis}
+
+Where differences are detected or detailed evidence is required, localisation capabilities are applied to identify precisely where and how outputs differ. This phase produces granular, reproducible evidence suitable for investigation and review.
+
+Localisation outputs remain factual and descriptive. They do not assert whether differences are correct, acceptable, or intended.
+
+\subsection{Interpretation and Outcome Classification}
+
+The final phase involves interpretation of execution evidence in the context of documented intent. Human reviewers assess whether observed differences align with expected behaviour, represent acceptable change, or require further action.
+
+Outcome classification may result in acceptance of observed behaviour, identification of defects, or initiation of follow-up activities. This phase does not alter execution evidence, but determines how it is used to inform decisions.
+
+\subsection{Iterative Use and Re-Execution}
+
+The TAS lifecycle supports iterative application. Changes to intent, test definitions, or system behaviour may result in re-execution of tests, with new evidence produced and evaluated.
+
+Each execution cycle is independent and reproducible, allowing testing outcomes to be revisited or revalidated as systems continue to evolve.

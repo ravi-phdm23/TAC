@@ -1,0 +1,44 @@
+\section{Scope and Applicability}
+
+This document defines the scope and applicability of the Testing Automation Suite (TAS) as a shared testing capability within the Testing Center of Excellence.
+
+\subsection{In-Scope Usage}
+
+TAS is applicable to regression testing scenarios where system outputs are expected to remain stable across incremental changes, unless an intentional change has been introduced. In-scope usage includes scenarios requiring one or more of the following capabilities:
+
+\begin{itemize}
+  \item Comparison of system outputs across successive executions, versions, or states.
+  \item Validation of calculated metrics, derived attributes, and aggregated results.
+  \item Identification and localisation of unintended differences introduced through system changes.
+  \item Support for regression testing across multiple systems, domains, or platforms using a consistent testing approach.
+\end{itemize}
+
+These scenarios commonly arise in high-impact systems, including but not limited to finance, risk, regulatory reporting, and other critical business processes.
+
+\subsection{Conditional Usage}
+
+TAS may be applied selectively in the following situations:
+
+\begin{itemize}
+  \item Early-stage development or exploratory testing where no stable reference state exists.
+  \item One-off analytical investigations not intended to support formal test outcomes.
+  \item Prototyping activities where testing intent is still evolving.
+\end{itemize}
+
+In such cases, TAS functions primarily as an accelerator rather than a reference testing capability.
+
+\subsection{Out-of-Scope Activities}
+
+TAS does not attempt to automate or replace:
+
+\begin{itemize}
+  \item Interpretation of business, policy, or regulatory intent.
+  \item Design decisions regarding expected system behaviour.
+  \item Exploratory testing aimed at discovering previously unknown behaviours.
+\end{itemize}
+
+These activities may inform testing inputs but remain outside the scope of TAS.
+
+\subsection{Applicability Constraint}
+
+Where TAS is applied as the reference regression testing approach, outputs and discrepancies identified by TAS are treated as the baseline for further investigation and decision-making. Alternative analysis techniques may be used to provide explanation or context, but not to invalidate observed results.

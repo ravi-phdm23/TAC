@@ -1,0 +1,35 @@
+\documentclass[class=article, crop=false]{standalone}
+
+\input{preamble_ppt}
+\setlength{\parskip}{0.8em}
+\setlength{\parindent}{0pt}
+
+\title{Testing Automation Suite (TAS)\\Solution Overview}
+\author{Testing Center of Excellence}
+\date{\today}
+
+% --- Custom macro to always start inputs on a new page ---
+\newcommand{\inputpage}[1]{%
+  \clearpage
+  \input{#1}%
+}
+
+\begin{document}
+
+\maketitle
+
+% Each page = one idea
+\inputpage{presentation/01_purpose}
+\inputpage{presentation/02_scope}
+\inputpage{presentation/03_conceptual_model}
+\inputpage{presentation/04_architecture}
+\inputpage{presentation/05_modules}
+\inputpage{presentation/06_ai_controls}
+\inputpage{presentation/07_lifecycle}
+\inputpage{presentation/08_governance}
+\inputpage{presentation/09_evidence}
+\inputpage{presentation/10_benefits}
+\inputpage{presentation/11_adoption}
+\inputpage{presentation/12_limitations}
+
+\end{document}

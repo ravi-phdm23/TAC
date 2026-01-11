@@ -1,0 +1,221 @@
+% --- HEADER ---
+\begin{center}
+    {\scriptsize \bfseries \MakeUppercase{System Evolution Strategy}} \\
+    \vspace{0.1cm}
+    {\Huge \bfseries Testing Automation Suite (TAS)} \\
+    \vspace{0.1cm}
+    {\large \textbf{Problem:} How to evolve systems without unintended side effects? \quad \textbf{Solution:} Hard-to-vary regression testing.}
+\end{center}
+
+\vspace{0.2cm}
+
+% --- SECTION 1: PROBLEM VS SOLUTION ---
+% Fixed: Changed 'raster gap' to 'raster column skip'
+\begin{tcbitemize}[raster columns=2, raster column skip=5mm, raster equal height]
+    
+    % Traditional Approach
+    \tcbitem[
+        colback=paper, 
+        colframe=ink, 
+        title={\bfseries \small THE TRADITIONAL TRAP (Stochastic \& Fragile)},
+        coltitle=paper,
+        colbacktitle=ink, 
+        fonttitle=\bfseries,
+        sharp corners,
+        boxrule=0.5mm
+    ]
+    \begin{itemize}[leftmargin=*, label=$\times$, nosep]
+        \item \textbf{Manual Extraction:} Relies on ad-hoc queries and intuition.
+        \item \textbf{Tribal Knowledge:} Criteria live in heads, not code.
+        \item \textbf{High Noise:} Fails to distinguish signal from data drift.
+        \item \textbf{Unscalable:} Testing debt grows superlinearly with complexity.
+    \end{itemize}
+    \vspace{2mm}
+    \textit{\footnotesize \textbf{Consequence:} Regression testing becomes a bottleneck, forcing a choice between speed and safety.}
+    
+
+    % TAS Solution
+    \tcbitem[
+        colback=paper, 
+        colframe=ink, 
+        title={\bfseries \small THE TAS STANDARD (Deterministic \& Explanatory)},
+        coltitle=paper,
+        colbacktitle=ink, 
+        fonttitle=\bfseries,
+        sharp corners,
+        boxrule=0.5mm
+    ]
+    \begin{itemize}[leftmargin=*, label=$\checkmark$, nosep]
+        \item \textbf{Automated Validation:} Rules are codified and executable.
+        \item \textbf{Living Documentation:} Tests explain the system's intent.
+        \item \textbf{Precise Signal:} Zero-tolerance for unintended variance.
+        \item \textbf{Invariant:} Correctness is established by explicit design.
+    \end{itemize}
+    \vspace{2mm}
+    \textit{\footnotesize \textbf{Consequence:} Continuous evolution with mathematically guaranteed regression checks.}
+    
+
+\end{tcbitemize}
+
+\vspace{0.2cm}
+
+% --- SECTION 2: CORE CAPABILITIES ---
+\section*{Core Capabilities: The Constructor Architecture}
+
+% Fixed: Changed 'raster gap' to 'raster column skip'
+\begin{tcbitemize}[raster columns=3, raster column skip=5mm, raster equal height]
+    
+    % Detection
+    \tcbitem[
+        colback=paper, 
+        colframe=ink, 
+        title={\bfseries 1. Detection (The Alarm)},
+        coltitle=ink,
+        colbacktitle=shade, 
+        fonttitle=\bfseries,
+        sharp corners,
+        boxrule=0.5mm
+    ]
+    \small
+    Identifies \textit{that} a regression has occurred without wasting resources on details.
+    \par\vspace{3mm}
+    \textbf{Mechanism:} High-speed Hashing \& Aggregation.
+    \par
+    \textbf{Input:} Full System Datasets.
+    \par
+    \textbf{Output:} Boolean Pass/Fail Signal.
+    \vspace{2mm}
+    \begin{center}
+        \ttfamily \scriptsize [FAIL FAST \textbullet\ FAIL CHEAP]
+    \end{center}
+    
+
+    % Localisation
+    \tcbitem[
+        colback=paper, 
+        colframe=ink, 
+        title={\bfseries 2. Localisation (The Investigator)},
+        coltitle=ink,
+        colbacktitle=shade,
+        fonttitle=\bfseries,
+        sharp corners,
+        boxrule=0.5mm
+    ]
+    \small
+    Deterministically isolates \textit{where} the discrepancy resides.
+    \par\vspace{3mm}
+    \textbf{Mechanism:} Primary Key Alignment \& Attribute Diff.
+    \par
+    \textbf{Input:} Mismatched Data Subsets.
+    \par
+    \textbf{Output:} Precise Diff Report.
+    \vspace{2mm}
+    \begin{center}
+        \ttfamily \scriptsize [ELIMINATE MANUAL TRIAGE]
+    \end{center}
+    
+
+    % Construction
+    \tcbitem[
+        colback=paper, 
+        colframe=ink, 
+        title={\bfseries 3. Construction (The Lawmaker)},
+        coltitle=ink,
+        colbacktitle=shade,
+        fonttitle=\bfseries,
+        sharp corners,
+        boxrule=0.5mm
+    ]
+    \small
+    Builds the \textit{rules} of correctness based on documented change intent.
+    \par\vspace{3mm}
+    \textbf{Mechanism:} Intent-to-Assertion Compilation.
+    \par
+    \textbf{Input:} Requirements \& Change Specs.
+    \par
+    \textbf{Output:} Executable Test Suite.
+    \vspace{2mm}
+    \begin{center}
+        \ttfamily \scriptsize [CODIFIED INTENT]
+    \end{center}
+    
+
+\end{tcbitemize}
+
+\vspace{0.2cm}
+
+% --- SECTION 3: WORKFLOW DIAGRAM ---
+\section*{Expectation-Driven Workflow: From Intent to Invariant}
+
+\vspace{0.1cm}
+
+\begin{center}
+\begin{tikzpicture}[
+    node distance=0.6cm and 1.2cm, 
+    start chain=going right,
+    process/.style={
+        rectangle, 
+        minimum width=3.5cm, 
+        minimum height=1.6cm, 
+        align=center,
+        draw=ink, 
+        thick,
+        fill=paper,
+        font=\sffamily\small
+    },
+    arrow/.style={thick, ->, >=Stealth, color=ink},
+    labeltext/.style={font=\sffamily\scriptsize\bfseries, above, align=center},
+    number/.style={
+        circle,
+        fill=ink,
+        text=paper,
+        font=\bfseries\footnotesize,
+        inner sep=2pt,
+        anchor=south east
+    }
+]
+
+    % Nodes
+    \node (n1) [process, on chain] {
+        \textbf{Requirements}\\
+        \textit{Input: Raw Intent}
+    };
+    \node[number] at (n1.north east) {1};
+
+    \node (n2) [process, on chain] {
+        \textbf{Assistive Automation}\\
+        \textit{Task: Proposal Generation}
+    };
+    \node[number] at (n2.north east) {2};
+
+    \node (n3) [process, on chain] {
+        \textbf{Human Validation}\\
+        \textit{Task: Authority \& Check}
+    };
+    \node[number] at (n3.north east) {3};
+
+    \node (n4) [process, on chain, fill=shade] {
+        \textbf{Executable Tests}\\
+        \textit{Output: Determinism}
+    };
+    \node[number] at (n4.north east) {4};
+
+    % Arrows with Labels
+    \draw[arrow] (n1) -- node[labeltext] {Formalise} (n2);
+    \draw[arrow] (n2) -- node[labeltext] {Propose} (n3);
+    \draw[arrow] (n3) -- node[labeltext] {Codify} (n4);
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.2cm}
+
+% --- FOOTER BLOCK ---
+\begin{tcolorbox}[colback=ink, colframe=ink, sharp corners, boxrule=0pt, left=1mm, right=1mm, top=1mm, bottom=1mm]
+    \centering \color{paper} \sffamily \footnotesize 
+    \textbf{CORE PRINCIPLE:} We do not assume the system is correct. We construct an explanation of correctness (the test) and verify the system against it.
+\end{tcolorbox}
+
+\begin{center}
+    \tiny \vspace{1mm} \textcopyright\ 2026 Testing Automation Suite Strategy. Reliable. Repeatable. Explainable.
+\end{center}

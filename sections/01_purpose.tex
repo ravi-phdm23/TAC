@@ -1,0 +1,17 @@
+\section{Purpose and Problem Statement}
+
+The Testing Automation Suite (TAS) exists to enable reliable, repeatable, and explainable regression testing in environments where systems evolve incrementally over time. TAS supports validation of system outputs across successive states, ensuring that changes introduced through code, configuration, or data updates do not result in unintended differences.
+
+Traditional regression testing approaches often rely on manual data extraction, ad-hoc queries, and informal comparison techniques. While such methods can identify differences in isolated cases, they do not scale effectively across systems, releases, or teams. They are prone to inconsistency, difficult to reproduce, and frequently fail to provide clear evidence to support testing outcomes and release decisions.
+
+TAS addresses these limitations by decomposing regression testing into three distinct and coordinated tasks:
+
+\begin{itemize}
+  \item Detection of unexpected differences at an aggregate or metric level, providing an early and scalable signal of regression.
+  \item Deterministic localisation of discrepancies at record, attribute, or calculation-component level, removing reliance on ad-hoc analysis.
+  \item Controlled construction of test expectations derived from documented change intent or requirements, with explicit human oversight and without delegating correctness decisions to automation.
+\end{itemize}
+
+Together, these tasks establish a regression testing approach that is incremental by design, scalable across systems, and suitable for consistent application by testing teams operating within a shared Testing Center of Excellence.
+
+In support of expectation-driven testing, TAS treats the construction of tests as a staged process rather than a single automated step. Requirements and change intent are progressively transformed into executable tests through a sequence of constrained activities, each with explicit inputs, outputs, and authority. Assistive automation, including AI, is used only to propose intermediate artefacts; correctness is established through deterministic execution and human validation rather than inferred or assumed.

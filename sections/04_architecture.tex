@@ -1,0 +1,87 @@
+\section{TAS Architecture Overview}
+
+The architecture of the Testing Automation Suite (TAS) is derived directly from its conceptual testing model. It is designed to support staged construction of testing artefacts, deterministic execution of comparisons, and controlled incorporation of automation, including AI-assisted capabilities, without conflating interpretation with evidence.
+
+\subsection{Architectural Principles}
+
+TAS architecture is guided by the following principles:
+
+\begin{itemize}
+  \item \textbf{Separation of Concerns}: Detection, localisation, and expectation formation are implemented as distinct architectural capabilities.
+  \item \textbf{Deterministic Core}: All execution and comparison logic that produces test evidence operates deterministically.
+  \item \textbf{Constrained Automation}: Assistive automation is isolated from authoritative execution paths.
+  \item \textbf{Incremental Scalability}: The architecture supports progressive deepening of analysis only when required.
+\end{itemize}
+
+These principles ensure that TAS remains scalable, explainable, and suitable for consistent use across multiple systems.
+
+\subsection{High-Level Architectural Structure}
+
+At a high level, TAS consists of three coordinated architectural layers aligned to the testing concerns defined earlier:
+
+\begin{itemize}
+  \item A \textbf{Detection Layer} responsible for identifying whether differences exist across system states.
+  \item A \textbf{Localisation Layer} responsible for analysing and explaining the structure and location of detected differences.
+  \item An \textbf{Expectation Construction Layer} responsible for translating documented change intent into executable test definitions.
+\end{itemize}
+
+Each layer produces outputs that may serve as inputs to other layers, but no layer substitutes for the responsibilities of another.
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[
+  node distance=2.2cm,
+  every node/.style={draw, rectangle, rounded corners, align=center, minimum width=3.5cm, minimum height=1cm},
+  arrow/.style={->, thick}
+]
+
+% Layers
+\node (expectation) {Expectation Construction Layer\\\small (Test Intent \& Test Definitions)};
+\node (detection) [below left=of expectation] {Detection Layer\\\small (Aggregate Signals)};
+\node (localisation) [below right=of expectation] {Localisation Layer\\\small (Granular Analysis)};
+\node (execution) [below=3cm of expectation] {Deterministic Execution \& Comparison\\\small (Authoritative Evidence)};
+
+% Arrows
+\draw[arrow] (expectation) -- (execution);
+\draw[arrow] (execution) -- (detection);
+\draw[arrow] (execution) -- (localisation);
+
+% Notes
+\node[draw=none, below=0.3cm of execution] {\small Increasing Epistemic Authority};
+
+\end{tikzpicture}
+\caption{High-Level Architectural Structure and Flow of Evidence in TAS}
+\end{figure}
+
+Figure~\ref{fig:architecture-flow} illustrates the high-level architectural structure of TAS. Expectation construction operates upstream, producing hypotheses about intended behaviour. Deterministic execution and comparison form the authoritative core, producing factual evidence of system behaviour. Detection and localisation consume this evidence to support scalable identification and explanation of differences. Assistive automation operates only within the expectation construction layer and does not directly influence execution or evidence generation.
+
+
+\subsection{Flow of Information and Evidence}
+
+Information within TAS flows through a sequence of transformations with increasing epistemic authority:
+
+\begin{itemize}
+  \item Inputs such as system outputs, change descriptions, or requirements enter TAS as raw artefacts.
+  \item Intermediate artefacts are constructed to represent hypotheses about expected behaviour or points of difference.
+  \item Deterministic execution and comparison produce factual evidence of system behaviour.
+\end{itemize}
+
+Only the outputs of deterministic execution are treated as authoritative evidence. Intermediate artefacts remain reviewable and revisable.
+
+\subsection{Isolation of Assistive Automation}
+
+The architecture explicitly isolates assistive automation from authoritative execution paths. Automation may be used to generate candidate artefacts such as structured test intent, test definitions, or data access logic, but these artefacts must pass through validation and review before execution.
+
+This isolation ensures that probabilistic processes do not directly influence test outcomes or evidence generation.
+
+\subsection{Support for Incremental Analysis}
+
+TAS architecture supports incremental analysis by design. Coarse-grained detection may be performed routinely, while fine-grained localisation and expectation-driven validation are invoked selectively based on observed differences or testing objectives.
+
+This approach allows TAS to scale across large datasets and multiple systems without incurring unnecessary computational or operational cost.
+
+\subsection{Technology and Platform Independence}
+
+The TAS architecture is intentionally decoupled from specific technologies, platforms, or tools. While implementations may integrate with particular data stores, requirement repositories, or execution engines, the architectural model does not assume or mandate any specific technology choices.
+
+This abstraction allows TAS to be applied consistently across heterogeneous environments within the Testing Center of Excellence.

@@ -1,0 +1,60 @@
+% ===========================
+% CORE LAYOUT & PAGE CONTROL
+% ===========================
+\usepackage[top=1cm, bottom=1cm, left=1cm, right=1cm, landscape]{geometry}
+
+% ===========================
+% ENCODING & LANGUAGE
+% ===========================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+% ===========================
+% FONT SYSTEM (pdfLaTeX safe)
+% ===========================
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+% ===========================
+% MATH & SYMBOLS
+% ===========================
+\usepackage{amssymb}
+
+% ===========================
+% COLOR & GRAPHICS
+% ===========================
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{positioning, arrows.meta, chains, shapes.geometric, shadows, calc}
+
+% ===========================
+% BOXES & STRUCTURE
+% ===========================
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{skins, raster, hooks}
+
+\tcbset{
+  colback=white,
+  colframe=black!60,
+  arc=2mm,
+  boxrule=0.8pt,
+  left=6pt,
+  right=6pt,
+  top=6pt,
+  bottom=6pt
+}
+
+% ===========================
+% LIST & PARAGRAPH CONTROL
+% ===========================
+\usepackage{enumitem}
+\setlength{\parindent}{0pt}
+
+% ===========================
+% GRAYSCALE PALETTE
+% ===========================
+\definecolor{ink}{gray}{0.0}
+\definecolor{paper}{gray}{1.0}
+\definecolor{shade}{gray}{0.95}
+\definecolor{stroke}{gray}{0.4}
